@@ -1,0 +1,13 @@
+storybook-static
+/node_modules
+
+dist
+
+lib/
+esm/
+
+.cache
+.DS_Store
+
+coverage
+.reg
