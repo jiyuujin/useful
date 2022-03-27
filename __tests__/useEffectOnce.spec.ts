@@ -1,25 +1,25 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { useEffectOnce } from '../src/hooks/useEffectOnce'
 
-const mockEffectCleanup = jest.fn()
-const mockEffectCallback = jest.fn().mockReturnValue(mockEffectCleanup)
+const mockEffect = jest.fn()
+const mockCallback = jest.fn().mockReturnValue(mockEffect)
 
 it('should run provided effect only once', () => {
-  const { rerender } = renderHook(() => useEffectOnce(mockEffectCallback))
+  const { rerender } = renderHook(() => useEffectOnce(mockCallback))
 
-  expect(mockEffectCallback).toHaveBeenCalledTimes(1)
+  expect(mockCallback).toHaveBeenCalledTimes(1)
 
   rerender()
 
-  expect(mockEffectCallback).toHaveBeenCalledTimes(1)
+  expect(mockCallback).toHaveBeenCalledTimes(1)
 })
 
 it('should run clean-up provided on unmount', () => {
-  const { unmount } = renderHook(() => useEffectOnce(mockEffectCallback))
+  const { unmount } = renderHook(() => useEffectOnce(mockCallback))
 
-  expect(mockEffectCleanup).toHaveBeenCalledTimes(1)
+  expect(mockEffect).toHaveBeenCalledTimes(1)
 
   unmount()
 
-  expect(mockEffectCleanup).toHaveBeenCalledTimes(2)
+  expect(mockEffect).toHaveBeenCalledTimes(2)
 })
