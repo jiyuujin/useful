@@ -7,28 +7,30 @@ afterEach(() => {
   jest.resetAllMocks()
 })
 
-it('should call provided callback on mount', () => {
-  renderHook(() => useMount(mockCallback))
+describe('useMount', () => {
+  it('should call provided callback on mount', () => {
+    renderHook(() => useMount(mockCallback))
 
-  expect(mockCallback).toHaveBeenCalledTimes(1)
-})
+    expect(mockCallback).toHaveBeenCalledTimes(1)
+  })
 
-it('should not call provided callback on unmount', () => {
-  const { unmount } = renderHook(() => useMount(mockCallback))
+  it('should not call provided callback on unmount', () => {
+    const { unmount } = renderHook(() => useMount(mockCallback))
 
-  expect(mockCallback).toHaveBeenCalledTimes(1)
+    expect(mockCallback).toHaveBeenCalledTimes(1)
 
-  unmount()
+    unmount()
 
-  expect(mockCallback).toHaveBeenCalledTimes(1)
-})
+    expect(mockCallback).toHaveBeenCalledTimes(1)
+  })
 
-it('should not call provided callback on rerender', () => {
-  const { rerender } = renderHook(() => useMount(mockCallback))
+  it('should not call provided callback on rerender', () => {
+    const { rerender } = renderHook(() => useMount(mockCallback))
 
-  expect(mockCallback).toHaveBeenCalledTimes(1)
+    expect(mockCallback).toHaveBeenCalledTimes(1)
 
-  rerender()
+    rerender()
 
-  expect(mockCallback).toHaveBeenCalledTimes(1)
+    expect(mockCallback).toHaveBeenCalledTimes(1)
+  })
 })
